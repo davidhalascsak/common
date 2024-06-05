@@ -31,6 +31,10 @@ cmake_minimum_required (VERSION 3.18)
 #
 include(FetchContent)
 
+if(MSVC)
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+endif() # MSVC
+
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/9406a60c7839052e4944ea4dbc8344762a89f9bd.zip
