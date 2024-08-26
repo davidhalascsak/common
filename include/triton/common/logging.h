@@ -56,7 +56,7 @@ namespace triton { namespace common {
 class Logger {
  public:
   // Log Formats.
-  enum class Format { kDEFAULT, kISO8601 };
+  enum class Format { kDEFAULT, kISO8601, kALTAIR };
 
   // Log levels.
   enum class Level : uint8_t { kERROR = 0, kWARNING = 1, kINFO = 2, kEND };
@@ -101,6 +101,8 @@ class Logger {
   std::string LogFormatString()
   {
     switch (format_) {
+      case Format::kALTAIR:
+        return "Altair";
       case Format::kISO8601:
         return "ISO8601";
       case Format::kDEFAULT:

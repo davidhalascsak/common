@@ -78,6 +78,14 @@ LogMessage::LogTimestamp(std::stringstream& stream)
              << timestamp_.wMilliseconds * 1000;
       break;
     }
+    case Logger::Format::kALTAIR: {
+      stream << std::setfill('0') << std::setw(2) << timestamp_.wMonth
+             << std::setw(2) << timestamp_.wDay << ' ' << std::setw(2)
+             << timestamp_.wHour << ':' << std::setw(2) << timestamp_.wMinute
+             << ':' << std::setw(2) << timestamp_.wSecond << '.' << std::setw(6)
+             << timestamp_.wMilliseconds * 1000;
+      break;
+    }
     case Logger::Format::kISO8601: {
       stream << timestamp_.wYear << '-' << std::setfill('0') << std::setw(2)
              << timestamp_.wMonth << '-' << std::setw(2) << timestamp_.wDay
@@ -104,6 +112,14 @@ LogMessage::LogTimestamp(std::stringstream& stream)
              << timestamp_.tv_usec;
       break;
     }
+    case Logger::Format::kALTAIR: {
+      stream << std::setfill('0') << std::setw(2) << (tm_time.tm_mon + 1)
+             << std::setw(2) << tm_time.tm_mday << ' ' << std::setw(2)
+             << tm_time.tm_hour << ':' << std::setw(2) << tm_time.tm_min << ':'
+             << std::setw(2) << tm_time.tm_sec << '.' << std::setw(6)
+             << timestamp_.tv_usec;
+      break;
+    }
     case Logger::Format::kISO8601: {
       stream << (tm_time.tm_year + 1900) << '-' << std::setfill('0')
              << std::setw(2) << (tm_time.tm_mon + 1) << '-' << std::setw(2)
@@ -122,6 +138,13 @@ LogMessage::LogPreamble(std::stringstream& stream)
 {
   switch (gLogger_.LogFormat()) {
     case Logger::Format::kDEFAULT: {
+      stream << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)];
+      LogTimestamp(stream);
+      stream << ' ' << pid_ << ' ' << path_ << ':' << line_ << "] ";
+
+      break;
+    }
+    case Logger::Format::kALTAIR: {
       stream << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)];
       LogTimestamp(stream);
       stream << ' ' << pid_ << ' ' << path_ << ':' << line_ << "] ";
