@@ -102,7 +102,7 @@ class Logger {
   {
     switch (format_) {
       case Format::kALTAIR:
-        return "Altair";
+        return "ALTAIR";
       case Format::kISO8601:
         return "ISO8601";
       case Format::kDEFAULT:
