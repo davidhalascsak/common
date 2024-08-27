@@ -172,9 +172,9 @@ LogMessage::~LogMessage()
     std::string escaped_heading = gLogger_.EscapeLogMessages()
                                       ? TritonJson::SerializeString(heading_)
                                       : heading_;
-    log_record << escaped_heading << " - " << getTenant() << '\n';
+    log_record << escaped_heading << " - " << getRapidminerTenant() << '\n';
   }
-  log_record << escaped_message << " - " << getTenant();
+  log_record << escaped_message << " - " << getRapidminerTenant();
   gLogger_.Log(log_record.str());
 }
 }}  // namespace triton::common
