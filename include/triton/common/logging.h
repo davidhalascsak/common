@@ -339,4 +339,18 @@ class LogMessage {
 
 #define LOG_FLUSH triton::common::gLogger_.Flush()
 
+  const std::string getTenant() {
+    const std::string namespace_path = "/var/run/secrets/kubernetes.io/serviceaccount/namespace";
+    std::ifstream namespace_file(namespace_path);
+
+    if (namespace_file.is_open()) {
+      std::string tenant_id;
+      std::getline(namespace_file, tenant_id);
+      namespace_file.close();
+      return tenant_id;
+    } else {
+      return "";  // Return an empty string if the file does not exist or cannot be opened
+  }
+}
+
 }}  // namespace triton::common

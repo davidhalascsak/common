@@ -27,6 +27,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
+#include <cstdlib>
 
 // Defined but not used
 #define TRITONJSON_STATUSTYPE uint8_t
@@ -160,7 +161,6 @@ LogMessage::LogPreamble(std::stringstream& stream)
   }
 }
 
-
 LogMessage::~LogMessage()
 {
   std::stringstream log_record;
@@ -172,10 +172,9 @@ LogMessage::~LogMessage()
     std::string escaped_heading = gLogger_.EscapeLogMessages()
                                       ? TritonJson::SerializeString(heading_)
                                       : heading_;
-    log_record << escaped_heading << '\n';
+    log_record << escaped_heading << " - " << getTenant() << '\n';
   }
-  log_record << escaped_message;
+  log_record << escaped_message << " - " << getTenant();
   gLogger_.Log(log_record.str());
 }
-
 }}  // namespace triton::common
