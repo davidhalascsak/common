@@ -146,9 +146,9 @@ LogMessage::LogPreamble(std::stringstream& stream)
       break;
     }
     case Logger::Format::kALTAIR: {
-      stream << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)];
+      stream << "{\"timestamp\": ";
       LogTimestamp(stream);
-      stream << ' ' << pid_ << ' ' << path_ << ':' << line_ << "] ";
+      stream << ", \"level\": " << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)];
 
       break;
     }
@@ -172,9 +172,11 @@ LogMessage::~LogMessage()
     std::string escaped_heading = gLogger_.EscapeLogMessages()
                                       ? TritonJson::SerializeString(heading_)
                                       : heading_;
-    log_record << escaped_heading << " - " << getRapidminerTenant() << " - " << std::getenv("APP_ID") << '\n';
+    log_record << ", \"message\": " << escaped_heading << ", \"kubernetes\": { \"namespace_name\": " <<
+      getRapidminerTenant() << ", \"app_id\": " << std::getenv("APP_ID") << "}, \"logversion\": 1.0.0}";
   }
-  log_record << escaped_message << " - " << " - " << std::getenv("APP_ID") << getRapidminerTenant();
+  log_record << ", \"message\": " << escaped_message << ", \"kubernetes\": { \"namespace_name\": " <<
+      getRapidminerTenant() << ", \"app_id\": " << std::getenv("APP_ID") << "}, \"logversion\": 1.0.0}";
   gLogger_.Log(log_record.str());
 }
 }}  // namespace triton::common
