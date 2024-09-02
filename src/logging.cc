@@ -91,7 +91,7 @@ LogMessage::LogTimestamp(std::stringstream& stream)
              << timestamp_.wMonth << '-' << std::setw(2) << timestamp_.wDay
              << 'T' << std::setw(2) << timestamp_.wHour << ':' << std::setw(2)
              << timestamp_.wMinute << ':' << std::setw(2) << timestamp_.wSecond
-             << "Z";
+             << "." << std::setw(2) <<  timestamp_.wMilliseconds <<"Z";
       break;
     }
   }
