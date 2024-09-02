@@ -62,7 +62,7 @@ class Logger {
   enum class Level : uint8_t { kERROR = 0, kWARNING = 1, kINFO = 2, kEND };
 
   inline static const std::array<const char*, static_cast<uint8_t>(Level::kEND)>
-      LEVEL_NAMES{"E", "W", "I"};
+      LEVEL_NAMES{"ERROR", "WARNING", "INFO"};
 
   Logger();
 
