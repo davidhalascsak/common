@@ -84,14 +84,15 @@ LogMessage::LogTimestamp(std::stringstream& stream)
              << timestamp_.wMonth << '-' << std::setw(2) << timestamp_.wDay
              << 'T' << std::setw(2) << timestamp_.wHour << ':' << std::setw(2)
              << timestamp_.wMinute << ':' << std::setw(2) << timestamp_.wSecond
-             << "Z";
+             << "." << std::setw(3) <<  timestamp_.wMilliseconds <<"Z";
+      break;
     }
     case Logger::Format::kISO8601: {
       stream << timestamp_.wYear << '-' << std::setfill('0') << std::setw(2)
              << timestamp_.wMonth << '-' << std::setw(2) << timestamp_.wDay
              << 'T' << std::setw(2) << timestamp_.wHour << ':' << std::setw(2)
              << timestamp_.wMinute << ':' << std::setw(2) << timestamp_.wSecond
-             << "." << std::setw(2) <<  timestamp_.wMilliseconds <<"Z";
+             << "Z";
       break;
     }
   }
