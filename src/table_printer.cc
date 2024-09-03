@@ -192,7 +192,7 @@ TablePrinter::AddRowDivider(std::stringstream& table)
     for (size_t i = 0; i < share + 2; i++) table << "-";
     table << "+";
   }
-  table << "\n";
+  table << "\\ \n";
 }
 
 std::string
