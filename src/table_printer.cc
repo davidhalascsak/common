@@ -181,7 +181,7 @@ TablePrinter::AddRow(std::stringstream& table, size_t row_index)
     if (j != max_height - 1)
       table << "\n";
   }
-  table << "\n";
+  table << "\\ \n";
 }
 
 void
