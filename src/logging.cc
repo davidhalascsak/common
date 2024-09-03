@@ -148,7 +148,7 @@ LogMessage::LogPreamble(std::stringstream& stream)
     case Logger::Format::kALTAIR: {
       stream << "{\"timestamp\": ";
       LogTimestamp(stream);
-      stream << ", \"level\": " << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)];
+      stream << ", \"level\": " << "\""  << Logger::LEVEL_NAMES[static_cast<uint8_t>(level_)] << "\"";
 
       break;
     }
