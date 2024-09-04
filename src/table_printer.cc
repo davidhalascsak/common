@@ -179,9 +179,9 @@ TablePrinter::AddRow(std::stringstream& table, size_t row_index)
 
     // Do not add new line if this is the last row of this record
     if (j != max_height - 1)
-      table << "\n";
+      table << "\\n";
   }
-  table << "\n";
+  table << "\\n";
 }
 
 void
@@ -192,15 +192,14 @@ TablePrinter::AddRowDivider(std::stringstream& table)
     for (size_t i = 0; i < share + 2; i++) table << "-";
     table << "+";
   }
-  table << "\n";
+  table << "\\n";
 }
 
 std::string
 TablePrinter::PrintTable()
 {
   std::stringstream table;
-
-  table << "\n";
+  table << "\\n";
 
   FairShare();
 
