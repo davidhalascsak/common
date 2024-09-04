@@ -303,7 +303,7 @@ class LogMessage {
           __FILE__, __LINE__, triton::common::Logger::Level::kINFO, nullptr, \
           false)                                                             \
               .stream()                                                      \
-          << TABLE.PrintTable();                                             \
+          << "\"" << TABLE.PrintTable() << "\"";                                             \
   } while (false)
 
 #define LOG_TABLE_INFO(TABLE)                                                \
@@ -313,7 +313,7 @@ class LogMessage {
           __FILE__, __LINE__, triton::common::Logger::Level::kINFO, nullptr, \
           false)                                                             \
               .stream()                                                      \
-          << TABLE.PrintTable();                                             \
+          << "\"" << TABLE.PrintTable() << "\"";                                               \
   } while (false)
 
 

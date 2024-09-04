@@ -199,6 +199,7 @@ std::string
 TablePrinter::PrintTable()
 {
   std::stringstream table;
+
   table << "\\n";
 
   FairShare();
