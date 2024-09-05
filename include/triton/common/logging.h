@@ -179,7 +179,7 @@ class LogMessage {
     }
   }
 
-  const std::string getRapidminerTenant() {
+  const std::string GetAltairTenant() {
     const std::string namespace_path = "/var/run/secrets/kubernetes.io/serviceaccount/namespace";
     std::ifstream namespace_file(namespace_path);
 
@@ -189,7 +189,7 @@ class LogMessage {
       namespace_file.close();
       return tenant_id;
     } else {
-      return "";  // Return an empty string if the file does not exist or cannot be opened
+      return "";
   	}
   }
 

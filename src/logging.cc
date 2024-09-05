@@ -173,10 +173,10 @@ LogMessage::~LogMessage()
                                       ? TritonJson::SerializeString(heading_)
                                       : heading_;
     log_record << ", \"message\": " << escaped_heading << ", \"kubernetes\": { \"namespace_name\": " <<
-       "\"" << getRapidminerTenant() << "\"" << ", \"app_id\": " << "\"" << std::getenv("APP_ID") << "\"" << "}, \"logversion\": \"1.0.0\"}";
+       "\"" << GetAltairTenant() << "\"" << ", \"app_id\": " << "\"" << std::getenv("APP_ID") << "\"" << "}, \"logversion\": \"1.0.0\"}";
   }
   log_record << ", \"message\": " << escaped_message << ", \"kubernetes\": { \"namespace_name\": " <<
-       "\"" << getRapidminerTenant() << "\"" << ", \"app_id\": " << "\"" << std::getenv("APP_ID") << "\"" << "}, \"logversion\": \"1.0.0\"}";
+       "\"" << GetAltairTenant() << "\"" << ", \"app_id\": " << "\"" << std::getenv("APP_ID") << "\"" << "}, \"logversion\": \"1.0.0\"}";
   gLogger_.Log(log_record.str());
 }
 }}  // namespace triton::common
